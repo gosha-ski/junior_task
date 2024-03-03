@@ -1,11 +1,8 @@
 import * as fs from "fs"
 import * as process from 'process';
 import * as readline from "readline"
-import {text} from "./text_data.js"
 import {bubble} from "./bubble_sort.js"
-import {fillFile} from "./fill_File.js"
 import {createFilteredFiles} from "./createFilteredFiles.js"
-//import * as lineByLine from 'n-readlines' 
 import * as path from "path"
 
 
@@ -45,11 +42,6 @@ function mergeDataInSortedFile(from, out){
 	}
 }
 
-const MB500 = 800
-
-//fillFile("hello.txt", MB500)
-
-//let mb100 = 1024*1024*200
 
 async function finalMerge(readFrom, saveTo, transferFolder, memoryLimit){
 	let memory = (1024*1024*memoryLimit*0.8)/3
@@ -65,16 +57,11 @@ async function finalMerge(readFrom, saveTo, transferFolder, memoryLimit){
 }
 
 
-// finalMerge("/home/gosha/nodejs/decorators_lesson/src/jun_task/hello.txt",
-//  "/home/gosha/nodejs/decorators_lesson/src/jun_task/final.txt", 
-//  "/home/gosha/nodejs/decorators_lesson/src/jun_task/data/", 
-//  mb100
-//  )
-
 let readFromFile = process.argv[2]
 let saveToFile = process.argv[3]
 let transferFolder = process.argv[4]
-let memoryLimit = process.argv[5]
+let memoryLimit = Number(process.argv[5])
+console.log(memoryLimit)
 
 finalMerge(readFromFile, saveToFile, transferFolder, memoryLimit)
 
